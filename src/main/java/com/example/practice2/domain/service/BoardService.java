@@ -31,4 +31,23 @@ public class BoardService {
                 .orElseThrow(() -> BoardNotFoundException.EXCEPTION)
         return new BoardResponse(board);
     }
+
+
+    public BoardIdResponse updateBoard(int BoardId, BoardRequest request) {
+        Board board = boardRepository.save(
+                Board.builder()
+                        .Title(request.getTitle())
+                        .Content(request.getContent())
+                        .build()
+        );
+        return new BoardIdResponse(board.getId());
+    }
+
+
+    public void deleteBoard(int BoardId) {
+        Board board = boardRepository.findById(BoardId)
+                .orElseThrow(() -> BoardNotFoundException.EXCEPTION);
+
+        boardRepository.delete(board);
+    }
 }

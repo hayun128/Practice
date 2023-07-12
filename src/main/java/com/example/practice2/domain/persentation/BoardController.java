@@ -26,4 +26,14 @@ public class BoardController {
     public BoardResponse findBoard(@PathVariable int BoardId) {
         return boardService.findBoard(BoardId);
    }
+
+   @PatchMapping("/board/{boardId")
+    public BoardIdResponse updateBoard(@PathVariable int BoardId, @RequestBody BoardRequest request) {
+        return boardService.updateBoard(BoardId, request);
+   }
+
+   @DeleteMapping("/board/{boardId}")
+    public void deleteBoard(@PathVariable int BoardId) {
+        boardService.deleteBoard(BoardId);
+   }
 }
